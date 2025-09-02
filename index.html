@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home | Water Monitoring</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+ <header>
+  <div class="logo">WaterMonitoring</div>
+  <nav>
+    <ul class="nav-menu" >
+      <li><a href="index.html">Home</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="settings.html">Settings</a></li>
+    </ul>
+  </nav>
+  <div class="menu-toggle" id="menu-toggle">
+  </div>
+ </header>
+
+
+  <div class="container">
+    <h1>Water Monitoring Dashboard</h1>
+    <div class="sensor-grid">
+      <div class="sensor-card">
+        <h2>DO Level</h2>
+        <p id="doValue">6.5 mg/L</p>
+      </div>
+      <div class="sensor-card">
+        <h2>pH Level</h2>
+        <p id="phValue">7.2</p>
+      </div>
+      <div class="sensor-card">
+        <h2>Temperature</h2>
+        <p id="tempValue">26.4 °C</p>
+      </div>
+    </div>
+
+    <!-- Graph Section -->
+    <div class="graph-container">
+      <h2>Sensor Trends</h2>
+      <canvas id="sensorChart"></canvas>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const ctx = document.getElementById('sensorChart').getContext('2d');
+    const sensorChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['10:00', '10:05', '10:10', '10:15', '10:20'], // Example timestamps
+        datasets: [
+          {
+            label: 'DO Level (mg/L)',
+            data: [6.2, 6.4, 6.5, 6.6, 6.5],
+            borderColor: 'blue',
+            fill: false
+          },
+          {
+            label: 'pH Level',
+            data: [7.1, 7.2, 7.2, 7.3, 7.2],
+            borderColor: 'green',
+            fill: false
+          },
+          {
+            label: 'Temperature (°C)',
+            data: [26.0, 26.2, 26.4, 26.5, 26.4],
+            borderColor: 'red',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          title: {
+            display: true,
+            text: 'Real-time Sensor Data'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

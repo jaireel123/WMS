@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reports | Water Monitoring</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+ <header>
+  <div class="logo">WaterMonitoring</div>
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="settings.html">Settings</a></li>
+    </ul>
+  </nav>
+  <div class="menu-toggle" id="menu-toggle">
+  </div>
+</header>
+
+
+  <div class="container">
+    <h1>Water Quality Reports</h1>
+    <p>Summary of water quality readings over the past days:</p>
+
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>DO Level (mg/L)</th>
+          <th>pH Level</th>
+          <th>Temperature (°C)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025-05-14</td>
+          <td>6.8</td>
+          <td>7.1</td>
+          <td>25.9</td>
+        </tr>
+        <tr>
+          <td>2025-05-13</td>
+          <td>6.4</td>
+          <td>7.3</td>
+          <td>26.2</td>
+        </tr>
+        <tr>
+          <td>2025-05-12</td>
+          <td>6.7</td>
+          <td>7.0</td>
+          <td>26.5</td>
+        </tr>
+        <tr>
+          <td>2025-05-11</td>
+          <td>6.5</td>
+          <td>7.2</td>
+          <td>26.1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Graph Section -->
+    <div class="graph-container">
+      <h2>Average Daily Water Quality</h2>
+      <canvas id="dailyChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('dailyChart').getContext('2d');
+
+    const dailyChart = new Chart(ctx, {
+      type: 'bar', // You can also use 'line'
+      data: {
+        labels: ['2025-05-14', '2025-05-13', '2025-05-12', '2025-05-11'],
+        datasets: [
+          {
+            label: 'DO Level (mg/L)',
+            data: [6.8, 6.4, 6.7, 6.5],
+            backgroundColor: 'rgba(54, 162, 235, 0.7)'
+          },
+          {
+            label: 'pH Level',
+            data: [7.1, 7.3, 7.0, 7.2],
+            backgroundColor: 'rgba(75, 192, 192, 0.7)'
+          },
+          {
+            label: 'Temperature (°C)',
+            data: [25.9, 26.2, 26.5, 26.1],
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          title: {
+            display: true,
+            text: 'Daily Average Readings'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
