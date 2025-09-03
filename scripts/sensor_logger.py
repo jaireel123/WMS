@@ -24,7 +24,7 @@ while True:
             database="watermonitor"
         )
         cursor = db.cursor()
-        cursor.execute("INSERT INTO sensor_data (temperature, ph, do_level) VALUES (%s, %s, %s)",
+        cursor.execute("INSERT INTO sensor_data (temperature, ph, dissolved_oxygen) VALUES (%s, %s, %s)",
                        (temp, ph, do))
         db.commit()
         db.close()
